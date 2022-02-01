@@ -18,6 +18,10 @@ vm_net="nat"
 
 vm_ssh_port="4242"
 
+SSH="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+
+PATH="$(dirname "$0")/utils/:$PATH"
+
 print_help()
 {
 	echo -e "Usage $0 [command]
@@ -144,14 +148,15 @@ vm_ssh() # user
 		else
 			local port="$vm_ssh_port"
 		fi
+		[ "$TERM" = alacritty ] && TERM=xterm
 
 		local pass="${user##*:}"
 
 		if ! [ -z "$pass" ]
 		then
-			"$(dirname "$0")/utils/pass.exp" "$pass" ssh -p "$port" "${user%%:*}@$(vm_ipv4)"
+			pass.exp "$pass" $SSH -p "$port" "${user%%:*}@$(vm_ipv4)"
 		else
-			ssh -p "$port" "$user@$(vm_ipv4)"
+			$SSH -p "$port" "$user@$(vm_ipv4)"
 		fi
 	else
 		print_vm_stopped 2>&1
