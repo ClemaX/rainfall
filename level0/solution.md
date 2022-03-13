@@ -1,8 +1,8 @@
-# level0
+level0
+======
 
-## Steps
-
-### Dissassembly
+Dissassembly
+------------
 
 To dissassemble the executable we can use gdb.
 ```sh
@@ -26,6 +26,9 @@ Dump of assembler code for function main:
    0x08048ede <+30>: 75 78          jne     0x8048f58 <main+152>
 ...
 ```
+
+Exploitation
+------------
 
 The decimal value for `0x1a7` is `423`. Hence, passing this string as an argument to the executable results in the execution of a shell, with the `level1` user's user-id and group-id.
 ```sh

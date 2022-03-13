@@ -1,8 +1,8 @@
-# level0
+level1
+======
 
-## Steps
-
-### Dissassembly
+Dissassembly
+------------
 
 To dissassemble the executable we can use gdb.
 ```sh
@@ -32,7 +32,8 @@ The stack looks like this:
 |   0     | *EBP          |  4   |
 |  +4     | *EIP          |  4   |
 
-### Exploitation
+Exploitation
+------------
 
 This is a typical case of stack-buffer overflow. This means we can overwrite data preceding the buffer on the stack, notably the return pointer preceding the buffer on the stack.
 

@@ -1,8 +1,8 @@
-# level3
+level3
+======
 
-## Steps
-
-### Dissassembly
+Dissassembly
+------------
 
 To dissassemble the executable we can use gdb.
 ```sh
@@ -95,7 +95,8 @@ if (*(int*)0x804988c == 0x40)
 }
 ```
 
-### Exploitation
+Exploitation
+------------
 
 With the use of some format-specifiers, we can easily print values from the stack, as if they where arguments:
 ```c
@@ -141,7 +142,7 @@ man 3 printf
 
 In our case, the executable is affected by the second bug. We can write to a location provided by an argument using the %n specifier.
 
-The %n modifiers writes the length of the preciding formatted input. So if we want to write 0x40 to memory location 0x804988c, we need to put the address at the start of our buffer, pop 3 arguments off the stack using the %p specifier, and pad the input to reach 40-bytes before placing %n specifier.
+The %n modifiers writes the length of the preceding formatted input. So if we want to write 0x40 to memory location 0x804988c, we need to put the address at the start of our buffer, pop 3 arguments off the stack using the %p specifier, and pad the input to reach 40-bytes before placing the %n specifier.
 
 ```sh
 ADDRESS="804988c"
