@@ -18,7 +18,7 @@ vm_net="nat"
 
 vm_ssh_port="4242"
 
-SSH="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+SSH=(ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no)
 
 PATH="$(dirname "$0")/utils/:$PATH"
 
@@ -154,9 +154,9 @@ vm_ssh() # user
 
 		if ! [ -z "$pass" ]
 		then
-			pass.exp "$pass" $SSH -p "$port" "${user%%:*}@$(vm_ipv4)"
+			pass.exp "$pass" "${SSH[@]}" -p "$port" "${user%%:*}@$(vm_ipv4)"
 		else
-			$SSH -p "$port" "$user@$(vm_ipv4)"
+			"${SSH[@]}" -p "$port" "$user@$(vm_ipv4)"
 		fi
 	else
 		print_vm_stopped 2>&1
@@ -168,7 +168,7 @@ case "${1:-}" in
 	"up" | ""	)	vm_up;;
 	"down"		)	vm_down;;
 	"ip"		)	vm_ipv4;;
-	"ssh"		)	shift; vm_ssh $@;;
+	"ssh"		)	shift; vm_ssh "$@";;
 	"help"		)	print_help;;
 	*			)	print_help && exit 1;;
 esac
