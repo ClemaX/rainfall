@@ -49,7 +49,7 @@ int main(int ac, char **av)
 ```
 
 We can see that there are two virtual methods that can be overloaded by classes inheriting N.
-The way virtual methods work is that each instance of a class containing them needs to have a pointer to the vtable
+The way virtual methods work is that each instance of a class containing them needs to have a pointer to the vtable.
 The vtable contains the pointers to the inherited or overloaded implementations.
 It can contain NULL pointers, when inheriting abstract classes, in which case they cannot be instanciated.
 
