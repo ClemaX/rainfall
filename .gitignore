@@ -1,5 +1,11 @@
+# Flags
+flag
+
+# Virtual Machine
 RainFall
 RainFall.iso
-*.swp
+
+# Temporary files
 *.log
-flag
+*.swp
+.gdb_history
