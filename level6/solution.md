@@ -109,8 +109,7 @@ man strcpy
 
 ```
 SECURITY CONSIDERATIONS
-     The strcpy() function is easily misused in a manner which enables malicious users to arbitrarily change a running program's functionality
-     through a buffer overflow attack.
+     The strcpy() function is easily misused in a manner which enables malicious users to arbitrarily change a running program's functionality through a buffer overflow attack.
 ```
 
 Because strcpy is unsafe and there is no length check on the source string, we can overflow the destination and reach the next allocation, which happens to be the function pointer.
