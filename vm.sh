@@ -42,14 +42,14 @@ print_ssh_usage()
 
 print_vm_stopped()
 {
-	echo -e "'$vm_name' is not running!
+	echo -e "\"$vm_name\" is not running!
 
 Use '$0 up' to start it up." 1>&2
 }
 
 print_vm_started()
 {
-	echo -e "'$vm_name' was already started!
+	echo -e "\"$vm_name\" was already started!
 
 Use '$0 ssh' to connect."
 }
@@ -78,7 +78,7 @@ vm_up()
 			done
 		popd
 
-		echo "Initializing '$vm_name' at '$vm_dir'..."
+		echo "Initializing \"$vm_name\" at '$vm_dir'..."
 
 		# Create and register vm in current working directory.
 		VBoxManage createvm --name "$vm_name" --ostype "$vm_os" --register --basefolder "$vm_dir"
@@ -93,7 +93,7 @@ vm_up()
 
 	if ! vm_running
 	then
-		echo "Starting '$vm_name'..."
+		echo "Starting \"$vm_name\"..."
 		VBoxManage startvm "$vm_name" --type headless
 	else
 		print_vm_started 2>&1
@@ -107,10 +107,10 @@ vm_down()
 	then
 		if vm_running
 		then
-			echo "Waiting for '$vm_name' to power off,,,"
+			echo "Waiting for \"$vm_name\" to power off,,,"
 			VBoxManage controlvm "$vm_name" poweroff && sleep 2
 		fi
-		echo "Tearing down '$vm_name'..."
+		echo "Tearing down \"$vm_name\"..."
 		VBoxManage unregistervm "$vm_name" --delete
 	fi
 }
@@ -152,7 +152,7 @@ vm_ssh() # user
 
 		local pass="${user##*:}"
 
-		if ! [ -z "$pass" ]
+		if [ -n "$pass" ]
 		then
 			pass.exp "$pass" "${SSH[@]}" -p "$port" "${user%%:*}@$(vm_ipv4)"
 		else
