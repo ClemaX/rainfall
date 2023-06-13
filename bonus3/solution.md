@@ -1,3 +1,12 @@
+<span style="display: flex; justify-content: space-between;"><span style="text-align: left; display: block;">
+	[← bonus2](../bonus2/solution.md)
+</span>
+<span style="text-align: center; display: block;">
+	[Home](../README.md)
+</span>
+<span style="text-align: right; display: block;"></span>
+</span>
+
 bonus3
 ======
 

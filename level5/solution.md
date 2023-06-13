@@ -1,3 +1,14 @@
+<span style="display: flex; justify-content: space-between;"><span style="text-align: left; display: block;">
+	[← level4](../level4/solution.md)
+</span>
+<span style="text-align: center; display: block;">
+	[Home](../README.md)
+</span>
+<span style="text-align: right; display: block;">
+	[level6 →](../level6/solution.md)
+</span>
+</span>
+
 level5
 ======
 
@@ -56,7 +67,7 @@ There also is another function o, which uses a system call to run a shell:
  80484bd:	e8 ce fe ff ff       	call   8048390 <_exit@plt>
 ```
 
-The problem is that it is not referenced, and needs to be accessed through a jmp or call instruction. 
+The problem is that it is not referenced, and needs to be accessed through a jmp or call instruction.
 We can see that the only thing we can exploit would be the exit call itself, since we cannot reach any other function past this point.
 
 The exit function uses a PLT-stub to redirect the call to the dynamically loaded libc library, whose address is only knwon past runtime-linking.

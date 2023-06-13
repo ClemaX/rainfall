@@ -1,3 +1,14 @@
+<span style="display: flex; justify-content: space-between;"><span style="text-align: left; display: block;">
+	[← level6](../level6/solution.md)
+</span>
+<span style="text-align: center; display: block;">
+	[Home](../README.md)
+</span>
+<span style="text-align: right; display: block;">
+	[level8 →](../level8/solution.md)
+</span>
+</span>
+
 level7
 ======
 
@@ -18,7 +29,7 @@ Let's look at the main function:
  8048522:	89 e5                	mov    ebp,esp
  8048524:	83 e4 f0             	and    esp,0xfffffff0
  8048527:	83 ec 20             	sub    esp,0x20
-... 
+...
 ```
 
 There are 4 calls to malloc. Each one has a size of 8 bytes.
@@ -157,7 +168,7 @@ There also is a function m that will print the buffer containing the flag, as we
  804851a:	e8 91 fe ff ff			call   80483b0 <printf@plt>
  804851f:	c9						leave
  8048520:	c3						ret
-``` 
+```
 
 Exploitation
 ------------

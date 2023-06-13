@@ -1,3 +1,14 @@
+<span style="display: flex; justify-content: space-between;"><span style="text-align: left; display: block;">
+	[← level0](../level0/solution.md)
+</span>
+<span style="text-align: center; display: block;">
+	[Home](../README.md)
+</span>
+<span style="text-align: right; display: block;">
+	[level2 →](../level2/solution.md)
+</span>
+</span>
+
 level1
 ======
 

@@ -1,3 +1,14 @@
+<span style="display: flex; justify-content: space-between;"><span style="text-align: left; display: block;">
+	[← level8](../level8/solution.md)
+</span>
+<span style="text-align: center; display: block;">
+	[Home](../README.md)
+</span>
+<span style="text-align: right; display: block;">
+	[bonus0 →](../bonus0/solution.md)
+</span>
+</span>
+
 level9
 ======
 
@@ -98,7 +109,7 @@ In memory, our two objects look like this:
 |   0x00   |     0x04     |   0x68  |   0x6c   |   0x70   |     0x74     |   0xd8  |   0xdc   |
 
 
-The memcpy copies to annotation, which is at offset 0x04. To reach b.vtable we need to input 0x70 - 0x04 = 0x6c bytes followed by the address of our fake vtable. 
+The memcpy copies to annotation, which is at offset 0x04. To reach b.vtable we need to input 0x70 - 0x04 = 0x6c bytes followed by the address of our fake vtable.
 We can put our fake vtable at the beginning of the annotation. Inside, we can simply point onto the memory following it, so that we can place our shellcode in the remaining space.
 
 To find out the address of the annotation buffer, we can use gdb:
