@@ -4,7 +4,7 @@ set -euo pipefail
 
 host_ssh_port=4343
 
-iso_url="https://projects.intra.42.fr/uploads/document/document/2087/RainFall.iso"
+iso_url="https://cdn.intra.42.fr/isos/RainFall.iso"
 
 vm_dir="$PWD"
 
