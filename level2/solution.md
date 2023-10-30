@@ -164,7 +164,7 @@ I'll use [Geyslan G. Bem's tiny shellcode](http://shell-storm.org/shellcode/file
 
 
 ```sh
-> /tmp/level2.sh cat << EOF
+> /tmp/level2.sh cat << 'EOF'
 ```
 ```bash
 #!/usr/bin/env bash
