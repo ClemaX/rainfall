@@ -182,7 +182,7 @@ echo "$SHELLCODE$PADDING$BYTES"
 ```
 ```sh
 EOF
-chmod +x shellcode.sh
+chmod +x /tmp/level2.sh
 ```
 
 ```sh
