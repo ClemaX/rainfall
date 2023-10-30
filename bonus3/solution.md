@@ -44,7 +44,7 @@ int main(int ac, char **av)
 		fclose(pass_file);
 
 		if (strcmp(buff, av[1]) == 0)
-			execl("/bin/sh","sh", 0);
+			execl("/bin/sh", "sh", NULL);
 		else
 			puts(buff + 64 + 1);
 
